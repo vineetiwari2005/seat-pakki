@@ -2,6 +2,7 @@
 node_modules
 /.pnp
 .pnp.js
+.vite
 
 # Testing
 /coverage
@@ -12,10 +13,12 @@ node_modules
 
 # Misc
 .DS_Store
+.vercel
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.log
 
 npm-debug.log*
 yarn-debug.log*
