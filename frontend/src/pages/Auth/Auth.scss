@@ -1,0 +1,281 @@
+.auth-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  background: #F2F2F2;
+  
+  .auth-container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    background-color: var(--bg-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .auth-card {
+    padding: var(--spacing-xl);
+    
+    @media (max-width: 768px) {
+      padding: var(--spacing-lg);
+    }
+  }
+  
+  .auth-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    
+    h2 {
+      color: var(--text-primary);
+      font-size: 2rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+  }
+  
+  .auth-form {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+      
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-md);
+      
+      label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        color: var(--text-primary);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+      
+      input,
+      select {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        transition: all var(--transition-fast);
+        
+        &:focus {
+          border-color: var(--primary-color);
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(248, 68, 100, 0.1);
+        }
+      }
+    }
+    
+    .btn {
+      width: 100%;
+      margin-top: var(--spacing-md);
+      font-size: 1.1rem;
+      padding: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 24px 0;
+
+      span {
+        background: white;
+        padding: 0 16px;
+        color: #999;
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--border-color);
+      }
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+
+      &:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+    }
+  }
+  
+  .auth-footer {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+    
+    p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    .auth-link {
+      color: var(--primary-color);
+      font-weight: 600;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .auth-illustration {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @media (max-width: 968px) {
+      display: none;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .illustration-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--spacing-xl);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      color: var(--text-white);
+      
+      h3 {
+        font-size: 1.75rem;
+        margin-bottom: var(--spacing-sm);
+      }
+      
+      p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  // Theatre Admin Selection Panel
+  .theatre-select-panel {
+    padding: 8px 0;
+
+    .theatre-select-title {
+      font-size: 1.4rem;
+      color: #1a1a2e;
+      margin: 0 0 4px;
+      text-align: center;
+    }
+
+    .theatre-select-desc {
+      color: #888;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0 0 24px;
+    }
+
+    .theatre-select-form {
+      .form-group {
+        margin-bottom: 16px;
+
+        label {
+          display: block;
+          margin-bottom: 6px;
+          color: #333;
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+
+        select {
+          width: 100%;
+          padding: 14px 16px;
+          border: 2px solid var(--border-color, #ddd);
+          border-radius: 8px;
+          font-size: 1rem;
+          background: white;
+          cursor: pointer;
+          transition: border-color 0.2s;
+
+          &:focus {
+            border-color: #FBC02D;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.15);
+          }
+
+          &:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+            color: #999;
+          }
+        }
+      }
+    }
+
+    .theatre-select-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .btn-primary {
+        background: #FBC02D;
+        border-color: #FBC02D;
+        color: #1a1a2e;
+        font-weight: 700;
+
+        &:hover {
+          background: #f9a825;
+          border-color: #f9a825;
+        }
+      }
+
+      .btn-text {
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 8px;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+  }
+}

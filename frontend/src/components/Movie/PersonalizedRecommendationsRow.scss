@@ -1,0 +1,39 @@
+.recommendation-row {
+  padding-top: var(--spacing-lg);
+
+  &__header {
+    margin-bottom: var(--spacing-md);
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+    }
+  }
+
+  &__loading {
+    color: var(--text-secondary);
+    padding: var(--spacing-md) 0;
+  }
+
+  &__strip {
+    display: flex;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: var(--spacing-sm);
+    scroll-behavior: smooth;
+  }
+
+  &__item {
+    flex: 0 0 220px;
+    min-width: 220px;
+  }
+
+  @media (max-width: 768px) {
+    &__item {
+      flex-basis: 170px;
+      min-width: 170px;
+    }
+  }
+}

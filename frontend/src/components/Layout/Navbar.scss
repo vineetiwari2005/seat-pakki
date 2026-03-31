@@ -1,0 +1,299 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #121212;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  
+  .navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    
+    @media (max-width: 768px) {
+      padding: 0 var(--spacing-sm);
+      height: 60px;
+    }
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex: 1;
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    
+    .logo-text {
+      color: var(--text-white);
+    }
+    
+    .logo-accent {
+      color: var(--primary-color);
+      margin: 0 2px;
+    }
+    
+    &:hover {
+      .logo-accent {
+        color: var(--accent-color);
+      }
+    }
+  }
+  
+  .navbar-search {
+    flex: 1;
+    max-width: 600px;
+    min-width: 0; /* Prevent overflow */
+    
+    form {
+      position: relative;
+      width: 100%;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+    
+    input {
+      width: 100%;
+      max-width: 100%; /* Prevent overflow */
+      padding: 12px 16px 12px 48px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      color: var(--text-white);
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      box-sizing: border-box; /* Include padding in width calculation */
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-color: var(--primary-color);
+        outline: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      display: none;
+      
+      &.mobile-open {
+        display: block;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: var(--spacing-sm);
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    
+    @media (max-width: 768px) {
+      &:not(.mobile-open) {
+        .city-selector {
+          display: none;
+        }
+      }
+      
+      &.mobile-open {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: var(--secondary-color);
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+        box-shadow: var(--shadow-lg);
+      }
+    }
+  }
+  
+  .city-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    svg {
+      color: var(--primary-color);
+    }
+  }
+  
+  .city-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    min-width: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 100;
+    
+    .city-item {
+      padding: 12px 16px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+      
+      &.active {
+        background-color: rgba(248, 68, 100, 0.1);
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .user-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+    
+    .user-name {
+      font-size: 0.9rem;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+  
+  .user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    min-width: 200px;
+    z-index: 100;
+    
+    a, button {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+    }
+    
+    .dropdown-divider {
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 8px 0;
+    }
+    
+    .logout-btn {
+      color: var(--error);
+      font-weight: 500;
+    }
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    
+    .btn-login {
+      padding: 8px 24px;
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      border-radius: var(--radius-md);
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--text-white);
+      }
+    }
+  }
+  
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+}

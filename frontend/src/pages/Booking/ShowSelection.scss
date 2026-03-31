@@ -1,0 +1,367 @@
+.show-selection-page {
+  background: linear-gradient(135deg, #C62828 0%, #8E0000 100%);
+  min-height: 100vh;
+  padding: 2rem 0;
+
+  .page-header {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .movie-summary {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+
+      .movie-poster-small {
+        width: 100px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .movie-info {
+        flex: 1;
+
+        h1 {
+          margin: 0 0 0.5rem 0;
+          color: #1a1a1a;
+          font-size: 2rem;
+        }
+
+        .movie-meta {
+          display: flex;
+          gap: 1.5rem;
+          color: #666;
+          font-size: 0.95rem;
+
+          span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+
+            svg {
+              color: #C62828;
+            }
+          }
+        }
+      }
+
+      .date-selector {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        .date-gap {
+          width: 2px;
+          background: #ddd;
+          margin: 4px 6px;
+          border-radius: 1px;
+          align-self: stretch;
+        }
+
+        .date-btn {
+          padding: 0.75rem 1.25rem;
+          border: 2px solid #e0e0e0;
+          background: white;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s;
+          min-width: 90px;
+          text-align: center;
+          position: relative;
+
+          .day {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+          }
+
+          .date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+          }
+
+          .month {
+            font-size: 0.8rem;
+            color: #666;
+          }
+
+
+
+          &:hover {
+            border-color: #C62828;
+            transform: translateY(-2px);
+          }
+
+          &.active {
+            background: linear-gradient(135deg, #C62828 0%, #8E0000 100%);
+            color: white;
+            border-color: #C62828;
+
+            .day,
+            .date,
+            .month {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .filters {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      label {
+        font-weight: 500;
+        color: #333;
+      }
+
+      select {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+          border-color: #C62828;
+        }
+      }
+    }
+  }
+
+  .theaters-list {
+    .theater-card {
+      background: white;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .theater-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .theater-info {
+          flex: 1;
+
+          h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            svg {
+              color: #C62828;
+            }
+          }
+
+          .theater-address {
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+
+            svg {
+              color: #999;
+            }
+          }
+        }
+
+        .theater-features {
+          display: flex;
+          gap: 0.5rem;
+
+          .feature-badge {
+            padding: 0.4rem 0.8rem;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .showtimes {
+        padding: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .showtime-btn {
+          padding: 0.75rem 1.5rem;
+          border: 2px solid #e0e0e0;
+          background: white;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s;
+          position: relative;
+
+          .time {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+          }
+
+          .seats-info {
+            font-size: 0.75rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+
+            svg {
+              font-size: 0.8rem;
+            }
+
+            &.available {
+              color: #FBC02D;
+
+              svg {
+                color: #FBC02D;
+              }
+            }
+
+            &.filling-fast {
+              color: #ff9800;
+
+              svg {
+                color: #ff9800;
+              }
+            }
+
+            &.sold-out {
+              color: #f44336;
+
+              svg {
+                color: #f44336;
+              }
+            }
+          }
+
+          &:hover:not(.disabled) {
+            border-color: #C62828;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+          }
+
+          &.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+
+  .no-shows {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    color: #666;
+
+    svg {
+      font-size: 3rem;
+      color: #ddd;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #C62828;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .show-selection-page {
+    .page-header .movie-summary {
+      flex-direction: column;
+      text-align: center;
+
+      .date-selector {
+        justify-content: center;
+      }
+    }
+
+    .filters {
+      flex-direction: column;
+      align-items: stretch;
+
+      .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    .theater-card .theater-header {
+      flex-direction: column;
+      gap: 1rem;
+
+      .theater-features {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

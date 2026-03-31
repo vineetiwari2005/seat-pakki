@@ -1,0 +1,149 @@
+.movie-details-page {
+  .movie-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xl);
+    
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7));
+    }
+  }
+  
+  .movie-header {
+    position: relative;
+    display: flex;
+    gap: var(--spacing-xl);
+    color: var(--text-white);
+    z-index: 2;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  
+  .movie-poster-large {
+    width: 300px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  .movie-info-main {
+    flex: 1;
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-md);
+      
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  .movie-meta-large {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    font-size: 1.1rem;
+    
+    span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+  
+  .movie-description-large {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.95;
+  }
+  
+  .movie-cast,
+  .movie-director {
+    margin-bottom: var(--spacing-md);
+    font-size: 1rem;
+    
+    strong {
+      margin-right: 8px;
+    }
+  }
+  
+  // Why Book With Us Section
+  .why-book-with-us {
+    background: #C62828;
+    padding: var(--spacing-xxl) 0;
+    margin-top: var(--spacing-xl);
+    
+    .section-title {
+      text-align: center;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-xl);
+      font-weight: 700;
+      
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .benefit-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+      
+      .benefit-icon {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+        font-weight: 600;
+      }
+      
+      p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+

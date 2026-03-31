@@ -1,0 +1,933 @@
+.booking-confirmation-page {
+  min-height: 100vh;
+  background: #F2F2F2;
+  padding: 40px 20px;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .success-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 0.6s ease-out;
+
+    .success-icon {
+      svg {
+        font-size: 80px;
+        color: #FBC02D;
+        filter: drop-shadow(0 4px 10px rgba(76, 175, 80, 0.3));
+        animation: scaleIn 0.5s ease-out;
+      }
+    }
+
+    h1 {
+      color: #121212;
+      font-size: 42px;
+      margin: 20px 0 10px 0;
+      font-weight: 700;
+    }
+
+    p {
+      color: #121212;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .booking-id {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 30px;
+      border-radius: 25px;
+      color: #121212;
+      font-size: 16px;
+      backdrop-filter: blur(10px);
+
+      strong {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .ticket-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    border-radius: 28px;
+    border: 1px solid #e6ebf2;
+    box-shadow: 0 20px 45px rgba(16, 24, 40, 0.14);
+    overflow: hidden;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(198, 40, 40, 0.08), transparent 42%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ticket-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 66.66%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 90%;
+        background: linear-gradient(to bottom, 
+          transparent 0%, 
+          #ddd 5%, 
+          #ddd 95%, 
+          transparent 100%);
+        background-image: repeating-linear-gradient(
+          to bottom,
+          #ddd,
+          #ddd 10px,
+          transparent 10px,
+          transparent 20px
+        );
+
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+
+    .ticket-details {
+      padding: 42px;
+
+      @media (max-width: 768px) {
+        padding: 30px 20px;
+      }
+
+      .movie-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 26px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #edf1f7;
+
+        h2 {
+          margin: 0;
+          color: #111827;
+          font-size: 30px;
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          flex: 1;
+        }
+
+        .rating {
+          background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+          color: #fff;
+          padding: 8px 14px;
+          border-radius: 999px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+        }
+      }
+
+      .detail-row {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 22px;
+        padding: 14px 16px;
+        border: 1px solid #edf1f7;
+        border-radius: 14px;
+        background: #ffffff;
+
+        .icon {
+          font-size: 20px;
+          color: #dc2626;
+          margin-top: 4px;
+          min-width: 20px;
+        }
+
+        label {
+          display: block;
+          font-size: 12px;
+          color: #71717a;
+          text-transform: uppercase;
+          letter-spacing: 0.09em;
+          margin-bottom: 6px;
+          font-weight: 700;
+        }
+
+        p {
+          margin: 0;
+          color: #111827;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 1.5;
+        }
+
+        .seat-numbers {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 6px;
+
+          .seat-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #fff;
+            padding: 5px 11px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+          }
+        }
+      }
+
+      .price-summary {
+        background: linear-gradient(145deg, #f8fbff 0%, #f2f7ff 100%);
+        border: 1px solid #d9e7ff;
+        padding: 22px;
+        border-radius: 16px;
+        margin: 30px 0;
+
+        .price-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 11px;
+          font-size: 14px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          span:first-child {
+            color: #334155;
+            font-weight: 600;
+          }
+
+          span:last-child {
+            font-weight: 700;
+            color: #0f172a;
+          }
+
+          &.total {
+            font-size: 22px;
+            margin-top: 6px;
+            padding-top: 14px;
+
+            span {
+              color: #dc2626;
+              font-weight: 800;
+            }
+          }
+
+          &.split-info span:first-child {
+            color: #1d4ed8;
+          }
+
+          &.discount span {
+            color: #15803d;
+            font-weight: 700;
+          }
+        }
+
+        .price-divider {
+          border-top: 1px dashed #bfdbfe;
+          margin: 15px 0;
+        }
+      }
+
+      .transaction-info {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        padding: 16px 18px;
+        border-radius: 12px;
+        margin-top: 20px;
+
+        p {
+          margin: 5px 0;
+          font-size: 13px;
+          color: #854d0e;
+          line-height: 1.45;
+
+          strong {
+            color: #1f2937;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .ticket-qr {
+      padding: 40px 34px;
+      background: linear-gradient(180deg, #f8fafc 0%, #eef3fb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 768px) {
+        padding: 30px 20px;
+      }
+
+      .qr-section {
+        text-align: center;
+        width: 100%;
+
+        h3 {
+          color: #0f172a;
+          margin: 0 0 22px 0;
+          font-size: 17px;
+          font-weight: 700;
+          letter-spacing: 0.01em;
+        }
+
+        .qr-code {
+          background: #fff;
+          padding: 18px;
+          border-radius: 18px;
+          display: inline-block;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 10px 26px rgba(15, 23, 42, 0.14);
+          margin-bottom: 14px;
+
+          svg {
+            display: block;
+          }
+        }
+
+        .qr-note {
+          color: #475569;
+          font-size: 13px;
+          margin: 10px 0 2px;
+          font-weight: 600;
+        }
+
+        .booking-ref {
+          font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace;
+          font-size: 15px;
+          font-weight: 700;
+          color: #b91c1c;
+          letter-spacing: 0.08em;
+          margin-top: 10px;
+          padding: 8px 12px;
+          border-radius: 10px;
+          background: #fff;
+          border: 1px solid #f3d2d2;
+          display: inline-block;
+        }
+      }
+    }
+
+    .ticket-footer {
+      background: #f8fafc;
+      padding: 24px 40px;
+      border-top: 1px dashed #d8dee8;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        padding: 20px;
+      }
+
+      .footer-note {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
+        p {
+          margin: 0;
+          color: #475569;
+          font-size: 13px;
+          font-weight: 600;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 10px 12px;
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+        }
+      }
+    }
+  }
+
+  .pdf-capture-root {
+    position: fixed;
+    top: 0;
+    left: -10000px;
+    width: 900px;
+    background: #ffffff;
+    padding: 0;
+    z-index: -1;
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  .ticket-card.pdf-ticket {
+    width: 900px;
+    max-width: 900px;
+    margin: 0;
+    border-radius: 16px;
+    box-shadow: none;
+    animation: none;
+    border: 1px solid #dbe3ef;
+
+    &::before {
+      display: none;
+    }
+
+    .ticket-content {
+      grid-template-columns: 1.52fr 0.98fr;
+      min-height: auto;
+    }
+
+    .ticket-details {
+      padding: 26px;
+
+      .movie-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+
+        h2 {
+          font-size: 26px;
+        }
+      }
+
+      .detail-row {
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+
+        label {
+          margin-bottom: 3px;
+          font-size: 10px;
+        }
+
+        p {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .icon {
+          font-size: 16px;
+        }
+
+        .seat-numbers .seat-badge {
+          padding: 3px 9px;
+          font-size: 11px;
+        }
+      }
+
+      .price-summary {
+        margin: 16px 0 12px;
+        padding: 14px;
+        border-radius: 12px;
+
+        .price-row {
+          margin-bottom: 8px;
+          font-size: 12px;
+
+          &.total {
+            font-size: 18px;
+            padding-top: 10px;
+          }
+        }
+      }
+
+      .transaction-info {
+        margin-top: 10px;
+        padding: 12px;
+
+        p {
+          font-size: 11px;
+          margin: 3px 0;
+        }
+      }
+    }
+
+    .ticket-qr {
+      padding: 26px 18px;
+
+      .qr-section {
+        h3 {
+          font-size: 15px;
+          margin-bottom: 14px;
+        }
+
+        .qr-code {
+          padding: 12px;
+          margin-bottom: 8px;
+          border-radius: 12px;
+        }
+
+        .qr-note {
+          font-size: 11px;
+          margin: 8px 0 2px;
+        }
+
+        .booking-ref {
+          font-size: 13px;
+          padding: 6px 10px;
+          margin-top: 8px;
+        }
+      }
+    }
+
+    .ticket-footer {
+      padding: 12px 18px;
+
+      .footer-note {
+        gap: 8px;
+
+        p {
+          padding: 8px 9px;
+          font-size: 11px;
+        }
+      }
+    }
+
+    .detail-row,
+    .price-summary,
+    .transaction-info,
+    .ticket-qr,
+    .ticket-footer {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    button {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+
+      svg {
+        font-size: 18px;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #FBC02D 0%, #f59e0b 100%);
+      color: white;
+
+      &:hover {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      }
+    }
+
+    .btn-email {
+      background: #2196f3;
+      color: white;
+
+      &:hover {
+        background: #0b7dda;
+      }
+    }
+
+    .btn-home {
+      background: white;
+      color: #C62828;
+      border: 2px solid #C62828;
+
+      &:hover {
+        background: #C62828;
+        color: white;
+      }
+    }
+  }
+
+  .policy-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-out 0.6s both;
+
+    h3 {
+      color: #333;
+      margin: 0 0 20px 0;
+      font-size: 20px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 25px;
+
+      li {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 10px;
+        line-height: 1.6;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .error-state {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+    }
+  }
+}
+
+/*
+ * Standalone PDF styles (not dependent on parent selectors).
+ * html2pdf/html2canvas may render cloned nodes without full ancestor chain,
+ * so these selectors ensure the PDF keeps premium styling.
+ */
+.pdf-ticket {
+  width: 794px !important;
+  max-width: 794px !important;
+  margin: 0 !important;
+  border-radius: 16px !important;
+  border: 1px solid #dbe3ef !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  color: #0f172a !important;
+}
+
+.pdf-ticket .ticket-content {
+  display: grid !important;
+  grid-template-columns: 1.45fr 1fr !important;
+  position: relative !important;
+}
+
+.pdf-ticket .ticket-content::after {
+  content: '';
+  position: absolute;
+  top: 6%;
+  bottom: 6%;
+  left: 59%;
+  width: 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #cbd5e1 0,
+    #cbd5e1 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.pdf-ticket .ticket-details {
+  padding: 22px !important;
+}
+
+.pdf-ticket .movie-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 14px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.pdf-ticket .movie-header h2 {
+  margin: 0 !important;
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.pdf-ticket .movie-header .rating {
+  background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%) !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 999px !important;
+  padding: 6px 11px !important;
+}
+
+.pdf-ticket .detail-row {
+  display: flex !important;
+  gap: 11px !important;
+  margin-bottom: 10px !important;
+  padding: 10px 11px !important;
+  background: #ffffff !important;
+  border: 1px solid #e6edf5 !important;
+  border-radius: 10px !important;
+}
+
+.pdf-ticket .detail-row .icon {
+  color: #dc2626 !important;
+  font-size: 15px !important;
+  min-width: 15px !important;
+  margin-top: 3px !important;
+}
+
+.pdf-ticket .detail-row label {
+  display: block !important;
+  margin-bottom: 3px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+.pdf-ticket .detail-row p {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  line-height: 1.35 !important;
+}
+
+.pdf-ticket .seat-numbers {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.pdf-ticket .seat-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.pdf-ticket .price-summary {
+  margin: 12px 0 !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid #dbeafe !important;
+  background: linear-gradient(145deg, #f8fbff 0%, #eef5ff 100%) !important;
+}
+
+.pdf-ticket .price-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 12px !important;
+  margin-bottom: 7px !important;
+}
+
+.pdf-ticket .price-row span:first-child {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+.pdf-ticket .price-row span:last-child {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.pdf-ticket .price-row.total {
+  font-size: 17px !important;
+  margin-top: 2px !important;
+}
+
+.pdf-ticket .price-row.total span {
+  color: #dc2626 !important;
+  font-weight: 800 !important;
+}
+
+.pdf-ticket .price-divider {
+  border-top: 1px dashed #bfdbfe !important;
+  margin: 10px 0 !important;
+}
+
+.pdf-ticket .transaction-info {
+  margin-top: 8px !important;
+  padding: 10px 12px !important;
+  border: 1px solid #fde68a !important;
+  border-radius: 10px !important;
+  background: #fffbeb !important;
+}
+
+.pdf-ticket .transaction-info p {
+  margin: 3px 0 !important;
+  font-size: 11px !important;
+  color: #854d0e !important;
+}
+
+.pdf-ticket .ticket-qr {
+  padding: 20px 12px !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #edf3fb 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pdf-ticket .qr-section {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.pdf-ticket .qr-section h3 {
+  margin: 0 0 10px 0 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+.pdf-ticket .qr-code {
+  display: inline-block !important;
+  background: #fff !important;
+  border: 1px solid #dbe3ef !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08) !important;
+}
+
+.pdf-ticket .qr-note {
+  margin: 8px 0 2px !important;
+  font-size: 11px !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+.pdf-ticket .booking-ref {
+  display: inline-block !important;
+  margin-top: 6px !important;
+  padding: 5px 9px !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #b91c1c !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New', monospace !important;
+}
+
+.pdf-ticket .ticket-footer {
+  padding: 10px 12px !important;
+  border-top: 1px dashed #cbd5e1 !important;
+  background: #f8fafc !important;
+}
+
+.pdf-ticket .footer-note {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 6px !important;
+}
+
+.pdf-ticket .footer-note p {
+  margin: 0 !important;
+  padding: 8px 9px !important;
+  background: #fff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+.pdf-ticket .detail-row,
+.pdf-ticket .price-summary,
+.pdf-ticket .transaction-info,
+.pdf-ticket .ticket-qr,
+.pdf-ticket .ticket-footer {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+// Print styles
+@media print {
+  .booking-confirmation-page {
+    background: white;
+
+    .success-header,
+    .action-buttons,
+    .policy-section {
+      display: none;
+    }
+
+    .ticket-card {
+      box-shadow: none;
+      border: 2px solid #ddd;
+    }
+  }
+}
+
+// Animations
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

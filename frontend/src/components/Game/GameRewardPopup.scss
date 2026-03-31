@@ -1,0 +1,208 @@
+.reward-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reward-popup-container {
+  width: 90%;
+  max-width: 500px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  border: 2px solid #e23744;
+  box-shadow: 0 10px 40px rgba(226, 55, 68, 0.3);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reward-popup-content {
+  padding: 40px 30px;
+  text-align: center;
+  color: #e0e0e0;
+
+  .reward-header {
+    margin-bottom: 30px;
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      color: #ffd700;
+      font-weight: 700;
+      animation: bounce 0.6s ease-in-out;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      color: #a0a0b0;
+    }
+  }
+
+  .reward-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(226, 55, 68, 0.2);
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .label {
+        font-size: 0.95rem;
+        color: #a0a0b0;
+        font-weight: 500;
+      }
+
+      .value {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #ffd700;
+      }
+
+      .tier-badge {
+        background: linear-gradient(135deg, #e23744, #c2293a);
+        padding: 6px 16px;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .reward-amount-section {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.08));
+    border: 2px solid #22c55e;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+
+    .amount-box {
+      margin-bottom: 15px;
+
+      .amount-label {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+        color: #22c55e;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .amount-value {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #22c55e;
+      }
+    }
+
+    .wallet-info {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #a0a0b0;
+      line-height: 1.5;
+    }
+  }
+
+  .no-reward-section {
+    background: rgba(234, 179, 8, 0.1);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+  }
+
+  .close-popup-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #e23744, #c2293a);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(226, 55, 68, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 600px) {
+  .reward-popup-container {
+    width: 95%;
+  }
+
+  .reward-popup-content {
+    padding: 30px 20px;
+
+    .reward-header h1 {
+      font-size: 1.6rem;
+    }
+
+    .amount-value {
+      font-size: 2rem;
+    }
+
+    .close-popup-btn {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+    }
+  }
+}

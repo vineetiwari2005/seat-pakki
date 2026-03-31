@@ -1,0 +1,32 @@
+.not-found-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  
+  .not-found-content {
+    text-align: center;
+    
+    h1 {
+      font-size: 8rem;
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-md);
+      
+      @media (max-width: 768px) {
+        font-size: 6rem;
+      }
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+    }
+  }
+}
