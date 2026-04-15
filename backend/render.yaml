@@ -19,7 +19,7 @@ services:
       - key: JWT_SECRET
         sync: false
       - key: CORS_ALLOWED_ORIGINS
-        sync: false
+        value: https://seat-pakki.vercel.app,https://*.vercel.app,http://localhost:5173,http://localhost:3000
       - key: STRIPE_SECRET_KEY
         sync: false
       - key: STRIPE_PUBLISHABLE_KEY
