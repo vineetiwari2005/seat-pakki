@@ -6,19 +6,16 @@ WORKDIR /app
 
 # Copy build files first for better layer caching
 COPY pom.xml ./
-COPY .mvn ./.mvn
-COPY mvnw ./
-RUN chmod +x ./mvnw
 
 # Download dependencies early
-RUN ./mvnw -q -DskipTests dependency:go-offline
+RUN mvn -q -DskipTests dependency:go-offline
 
 # Copy source and package
 COPY src ./src
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Stage 2: Run with a lightweight JRE
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
