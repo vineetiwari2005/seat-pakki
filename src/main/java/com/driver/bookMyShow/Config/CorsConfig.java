@@ -1,5 +1,6 @@
 package com.driver.bookMyShow.Config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -7,9 +8,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 public class CorsConfig {
+
+    @Value("${app.cors.allowed-origins:http://localhost:3000,http://localhost:3001,http://localhost:5173}")
+    private String allowedOrigins;
 
     @Bean
     public CorsFilter corsFilter() {
@@ -19,20 +25,12 @@ public class CorsConfig {
         // Allow credentials (cookies, authorization headers)
         config.setAllowCredentials(true);
         
-        // Allow frontend origins
-        config.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://localhost:3002",
-            "http://localhost:3003",
-            "http://localhost:3004",
-            "http://localhost:3005",
-            "http://localhost:3006",
-            "http://localhost:3007",
-            "http://localhost:3008",
-            "http://localhost:3009",
-            "http://localhost:5173" // Vite default port
-        ));
+        // Allow frontend origins from env (supports wildcard patterns via setAllowedOriginPatterns)
+        List<String> originPatterns = Arrays.stream(allowedOrigins.split(","))
+            .map(String::trim)
+            .filter(origin -> !origin.isEmpty())
+            .collect(Collectors.toList());
+        config.setAllowedOriginPatterns(originPatterns);
         
         // Allow all headers
         config.addAllowedHeader("*");

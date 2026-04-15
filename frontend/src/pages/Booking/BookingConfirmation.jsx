@@ -5,6 +5,7 @@ import html2pdf from 'html2pdf.js';
 import { FaCheckCircle, FaDownload, FaHome, FaCalendar, FaClock, FaMapMarkerAlt, FaTicketAlt, FaRupeeSign, FaEnvelope, FaCar, FaUtensils } from 'react-icons/fa';
 import { MdEventSeat } from 'react-icons/md';
 import { authService } from '../../services';
+import { buildApiUrl } from '../../config/apiBaseUrl';
 import './BookingConfirmation.scss';
 
 const BookingConfirmation = () => {
@@ -52,7 +53,7 @@ const BookingConfirmation = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:8080/api/payment/status/${txnId}`);
+      const response = await fetch(buildApiUrl(`/api/payment/status/${txnId}`));
       if (response.ok) {
         const data = await response.json();
         setPaymentData(data);
@@ -137,7 +138,7 @@ const BookingConfirmation = () => {
       formData.append('foodAmount', bookingData.food ? String((bookingData.food.total || bookingData.food.subtotal || 0).toFixed(2)) : '');
       formData.append('pdfFile', pdfBlob, `ticket_${bookingId}.pdf`);
 
-      const response = await fetch('http://localhost:8080/api/bookings/email-ticket', {
+      const response = await fetch(buildApiUrl('/api/bookings/email-ticket'), {
         method: 'POST',
         body: formData
       });

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaCar, FaUtensils, FaArrowLeft, FaCheckCircle, FaRupeeSign, FaTag } from 'react-icons/fa';
 import { MdLocalParking } from 'react-icons/md';
+import { buildApiUrl } from '../../config/apiBaseUrl';
 import './Checkout.scss';
-
-const API_URL = 'http://localhost:8080';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -68,7 +67,7 @@ const Checkout = () => {
         setFoodItems([]);
         return;
       }
-      const response = await fetch(`${API_URL}/api/food/menu/${theaterId}`);
+      const response = await fetch(buildApiUrl(`/api/food/menu/${theaterId}`));
       if (response.ok) {
         const result = await response.json();
         // Backend wraps in ApiResponse: { success: true, data: [...] }
@@ -94,7 +93,7 @@ const Checkout = () => {
     try {
       const theaterId = bookingData?.theaterId;
       const response = await fetch(
-        `${API_URL}/api/parking/pricing?vehicleType=${parkingDetails.vehicleType}&hours=${parkingDetails.durationHours}${theaterId ? `&theaterId=${theaterId}` : ''}`
+        buildApiUrl(`/api/parking/pricing?vehicleType=${parkingDetails.vehicleType}&hours=${parkingDetails.durationHours}${theaterId ? `&theaterId=${theaterId}` : ''}`)
       );
       
       if (response.ok) {

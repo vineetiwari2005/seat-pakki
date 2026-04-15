@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaTimes, FaSave } from 'react-icons/fa';
 import SeatPakkiPopup from '../Common/SeatPakkiPopup';
+import { buildApiUrl } from '../../config/apiBaseUrl';
 import './EditProfileModal.scss';
 
 const EditProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
@@ -98,7 +99,7 @@ const EditProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
       let otpRequestId = null;
 
       if (sensitiveChanged) {
-        const otpResponse = await fetch(`http://localhost:8080/api/otp/send`, {
+        const otpResponse = await fetch(buildApiUrl('/api/otp/send'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -127,7 +128,7 @@ const EditProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
         }
       }
 
-      const response = await fetch(`http://localhost:8080/user/${userId}/profile`, {
+      const response = await fetch(buildApiUrl(`/user/${userId}/profile`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

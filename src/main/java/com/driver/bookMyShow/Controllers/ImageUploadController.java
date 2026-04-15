@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +29,6 @@ public class ImageUploadController {
 
     // Store images in project's static folder
     private static final String UPLOAD_DIR = "src/main/resources/static/uploads/posters/";
-    private static final String URL_PREFIX = "http://localhost:8080/uploads/posters/";
 
     @PostMapping("/image")
     public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) {
@@ -70,8 +70,11 @@ public class ImageUploadController {
             Path filePath = Paths.get(UPLOAD_DIR + filename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            // Return URL
-            String imageUrl = URL_PREFIX + filename;
+                // Return URL using the current host so it works across environments.
+                String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/uploads/posters/")
+                    .path(filename)
+                    .toUriString();
             
             log.info("✅ Image uploaded successfully: {}", imageUrl);
             

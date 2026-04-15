@@ -3,10 +3,9 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FaCouch, FaArrowLeft, FaCheckCircle, FaClock, FaRupeeSign } from 'react-icons/fa';
 import { MdEventSeat, MdChair, MdDoNotDisturb, MdLock, MdCheckCircle } from 'react-icons/md';
 import { seatLockService, authService } from '../../services';
+import { buildApiUrl } from '../../config/apiBaseUrl';
 import './SeatSelection.scss';
 import axios from 'axios';
-
-const API_BASE_URL = 'http://localhost:8080';
 
 const SeatSelection = () => {
   const { showId } = useParams();
@@ -34,13 +33,13 @@ const SeatSelection = () => {
         setLoadingSeats(true);
         
         // Fetch all seats for the show
-        const seatsResponse = await axios.get(`${API_BASE_URL}/show/${showId}/seats/availability`);
+        const seatsResponse = await axios.get(buildApiUrl(`/show/${showId}/seats/availability`));
         const allSeats = seatsResponse.data || [];
         
         console.log('Fetched seats from backend:', allSeats.length, 'seats');
         
         // Fetch currently locked seats
-        const lockedResponse = await axios.get(`${API_BASE_URL}/api/seat-locks/show/${showId}/locked-seats`);
+        const lockedResponse = await axios.get(buildApiUrl(`/api/seat-locks/show/${showId}/locked-seats`));
         const currentlyLocked = lockedResponse.data || [];
         
         // Group seats by type + row letter so same-letter rows of different types stay separate

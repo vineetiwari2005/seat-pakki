@@ -6,9 +6,8 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import { FaCreditCard, FaLock, FaCheckCircle, FaWallet } from 'react-icons/fa';
 import { walletService, paymentService, otpService } from '../../services';
 import SeatPakkiPopup from '../../components/Common/SeatPakkiPopup';
+import { buildApiUrl } from '../../config/apiBaseUrl';
 import './Payment.scss';
-
-const API_URL = 'http://localhost:8080';
 const FALLBACK_STRIPE_KEY =
   (import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '').trim() ||
   'pk_test_51SmK7UBMTQ3xf1vt2TERduPEkRF4ySl3VHQwMbW9CXBYmzUePlAaUZtol1xEB1lBknfAMCZoO9jOQQnw4Kq3ULWv002QEjCK39';
@@ -76,7 +75,7 @@ const PaymentForm = ({
       
       if (isSplitPayment) {
         // Step 1: Create split payment intent (wallet + card)
-        response = await fetch(`${API_URL}/api/payment/create-split-payment-intent`, {
+        response = await fetch(buildApiUrl('/api/payment/create-split-payment-intent'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -90,7 +89,7 @@ const PaymentForm = ({
         });
       } else {
         // Step 1: Create regular Stripe payment intent (card only)
-        response = await fetch(`${API_URL}/api/payment/create-stripe-intent`, {
+        response = await fetch(buildApiUrl('/api/payment/create-stripe-intent'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -152,9 +151,9 @@ const PaymentForm = ({
         }
 
         // Step 3: Confirm in our backend
-        const confirmEndpoint = isSplitPayment 
-          ? `${API_URL}/api/payment/confirm-split-payment`
-          : `${API_URL}/api/payment/confirm-stripe`;
+        const confirmEndpoint = isSplitPayment
+          ? buildApiUrl('/api/payment/confirm-split-payment')
+          : buildApiUrl('/api/payment/confirm-stripe');
           
         const confirmResponse = await fetch(confirmEndpoint, {
           method: 'POST',
@@ -341,7 +340,7 @@ const Payment = () => {
         let publishableKey = '';
 
         // Fetch Stripe key from backend
-        const stripeResponse = await fetch(`${API_URL}/api/payment/stripe-config`);
+        const stripeResponse = await fetch(buildApiUrl('/api/payment/stripe-config'));
         if (stripeResponse.ok) {
           const stripeData = await stripeResponse.json();
           publishableKey = (stripeData.publishableKey || '').trim();

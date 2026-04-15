@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_BASE_URL, buildApiUrl } from '../config/apiBaseUrl';
 
 // Create axios instance with base configuration
-// Use empty baseURL so requests go through Vite dev proxy (avoids CORS issues)
 const api = axios.create({
-  baseURL: '',
+  // In production, use VITE_API_BASE_URL; in dev, keep empty to use Vite proxy.
+  baseURL: API_BASE_URL || '',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -41,7 +42,7 @@ api.interceptors.response.use(
       
       try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await axios.post('/auth/refresh', {
+        const response = await axios.post(buildApiUrl('/auth/refresh'), {
           refreshToken,
         });
         
