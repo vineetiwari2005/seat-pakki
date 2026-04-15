@@ -11,7 +11,28 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class BookMyShowApplication {
 
 	public static void main(String[] args) {
+		overrideSanitizedDbProperty("DB_URL");
+		overrideSanitizedDbProperty("DB_USERNAME");
+		overrideSanitizedDbProperty("DB_PASSWORD");
 		SpringApplication.run(BookMyShowApplication.class, args);
+	}
+
+	private static void overrideSanitizedDbProperty(String key) {
+		String rawValue = System.getenv(key);
+		if (rawValue == null) {
+			return;
+		}
+
+		String sanitized = rawValue.trim();
+		if (sanitized.length() >= 2) {
+			char first = sanitized.charAt(0);
+			char last = sanitized.charAt(sanitized.length() - 1);
+			if ((first == '"' && last == '"') || (first == '\'' && last == '\'')) {
+				sanitized = sanitized.substring(1, sanitized.length() - 1).trim();
+			}
+		}
+
+		System.setProperty(key, sanitized);
 	}
 
 //TODO:
